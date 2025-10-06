@@ -1,4 +1,4 @@
-> **Q> Find the network id and broadcast if of this ip address: 192.168.225.212/27**
+> **Q> Find the network id and broadcast id of this ip address: 192.168.225.212/27**
 
 
 ---

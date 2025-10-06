@@ -1,4 +1,4 @@
-Great question! Let's break it down step by step to understand **how an ISP (Internet Service Provider) delivers internet to you** and how your **device gets connected to the internet**.  
+Let's break it down step by step to understand **how an ISP (Internet Service Provider) delivers internet to you** and how your **device gets connected to the internet**.  
 
 ---
 

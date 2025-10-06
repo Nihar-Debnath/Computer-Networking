@@ -402,7 +402,7 @@ The remaining bits are for **hosts (rooms)**.
 
 * Subnet mask: `255.255.0.0`
 * **Network bits**: 16
-* **Host bits**: 16
+* **Host bits**: 16 (32-16 = 16)
 * **Number of hosts**: 2¹⁶ − 2 = **65,534**
 
 👉 Colony size = **a big town (65k houses)**.
