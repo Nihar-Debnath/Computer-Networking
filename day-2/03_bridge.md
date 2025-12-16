@@ -143,3 +143,226 @@ If **PC1 → PC4**,
 | **Uses**        | Reduces congestion, separates collision domains        |
 | **Key Feature** | Learns MAC addresses and forwards frames intelligently |
 | **Example**     | Connecting two Ethernet LANs                           |
+
+
+---
+---
+---
+
+# 🧱 Forwarding, Filtering, Collision in a Bridge
+
+A **bridge** operates at **Layer 2 (Data Link Layer)** and uses **MAC addresses** to decide what to do with each frame.
+
+---
+
+# 1. 🔀 Forwarding (Bridge)
+
+### **Meaning:**
+
+Forwarding = sending the frame from one LAN segment to another.
+
+### **How the bridge decides:**
+
+A bridge keeps a **MAC address table** (port → MAC list).
+
+When a frame arrives:
+
+* It checks the **destination MAC**.
+* If the destination is on **another port**, the bridge **forwards** the frame to that port.
+
+### Example:
+
+* Frame comes from Port A
+* Destination MAC belongs to Port B
+  → **Bridge forwards the frame to Port B**
+
+Forwarding reduces unnecessary traffic between segments.
+
+---
+
+# 2. 🚫 Filtering (Bridge)
+
+### **Meaning:**
+
+Filtering = **blocking** a frame from crossing to another segment.
+
+### When the bridge filters:
+
+* If the destination MAC address is **on the same port** as the source
+  → No need to send it to another side
+  → **Bridge filters (drops)** the frame
+
+### Example:
+
+Both devices are on Port A → Bridge **does not forward** to Port B.
+
+### Why filtering is useful:
+
+* Reduces congestion
+* Keeps local traffic within the same segment
+* Improves performance
+
+---
+
+# 3. 💥 Collision (Bridge)
+
+### **Important point:**
+
+A **bridge reduces collisions**.
+
+### Why?
+
+* A bridge divides the network into **separate collision domains**.
+* Each port of a bridge is its **own collision domain**.
+
+So:
+
+* Collisions **cannot cross** from one segment to another.
+* Unlike hubs, bridges **limit the spread of collisions**.
+
+### Example:
+
+Collision occurs on Segment A →
+Segment B is **completely unaffected**.
+
+### Summary:
+
+* Hubs = 1 big collision domain → many collisions
+* Bridges = multiple collision domains → fewer collisions
+
+---
+
+# ✔️ Super Simple Summary Table
+
+| Concept        | Meaning                                 | Bridge Behavior                                     |
+| -------------- | --------------------------------------- | --------------------------------------------------- |
+| **Forwarding** | Sending frame to another segment        | Happens when destination MAC is on a different port |
+| **Filtering**  | Blocking frame from crossing segments   | Happens when destination is on same port            |
+| **Collision**  | Two devices transmitting simultaneously | Bridge **reduces** collisions by separating domains |
+
+
+
+
+---
+---
+---
+
+
+
+
+
+# 🧱 Static Bridge & Bridge Table (Explained Simply)
+
+---
+
+# 1. 🧱 What Is a Static Bridge?
+
+A **static bridge** is a bridge where the **MAC address entries are manually configured** by the network administrator.
+
+* The bridge does **not learn automatically**.
+* You **manually add** which MAC address belongs to which port.
+* Useful in very small, controlled networks or for security reasons.
+
+### When static bridging is used:
+
+* In networks where devices rarely change
+* For preventing unwanted devices from connecting
+* For tighter control than dynamic learning
+
+### Pros:
+
+* More secure
+* Predictable behavior
+
+### Cons:
+
+* Manual effort
+* Not scalable
+* Wrong entries can break communication
+
+---
+
+# 2. 📋 What Is a Bridge Table?
+
+A **bridge table** (also called MAC table, forwarding table, or filtering database) is a table inside the bridge that stores:
+
+| MAC Address | Port Number | Age (Timer) |
+| ----------- | ----------- | ----------- |
+
+This table tells the bridge **which device is located on which port**.
+
+---
+
+# 3. 🔍 How Does a Bridge Table Work?
+
+## ✔️ Step 1 — Learning
+
+When a frame arrives on a port:
+
+* Bridge reads the **source MAC address**.
+* Adds it to the table:
+  **MAC → incoming port**
+
+Example entry:
+
+```
+AA:BB:CC:DD:EE:FF → Port 2
+```
+
+This is called **dynamic learning**.
+
+> For static bridges, these entries are added manually.
+
+---
+
+## ✔️ Step 2 — Forwarding Decision
+
+Bridge looks at the **destination MAC address** in the frame.
+
+### Three possibilities:
+
+### **1. Destination MAC is in the table**
+
+→ Bridge **forwards** frame to the correct port.
+
+### **2. Destination MAC is on the same port**
+
+→ Bridge **filters** (drops) the frame.
+
+### **3. Destination MAC not found**
+
+→ Bridge **floods** the frame to all ports
+(except the incoming port)
+
+---
+
+## ✔️ Step 3 — Aging (Dynamic Bridges Only)
+
+Dynamic entries have a timer (e.g., 300 seconds).
+If a MAC is not seen for a while:
+
+→ The entry is **removed**
+→ Table stays updated automatically
+
+Static entries **never age out**.
+
+---
+
+# 4. 🧱 Static Bridge vs Dynamic Bridge
+
+| Feature      | Static Bridge | Dynamic Bridge            |
+| ------------ | ------------- | ------------------------- |
+| MAC Learning | Manual        | Automatic                 |
+| Bridge Table | Fixed entries | Learns frames dynamically |
+| Maintenance  | High          | Low                       |
+| Flexibility  | Low           | High                      |
+| Security     | Higher        | Normal                    |
+
+---
+
+# ✔️ Super Simple Summary
+
+* A **static bridge** does **not learn** MAC addresses automatically—admin manually configures them.
+* A **bridge table** stores MAC → port mappings.
+* Bridges use this table to **forward**, **filter**, or **flood** frames.
+* Dynamic bridges update this table automatically; static bridges do not.

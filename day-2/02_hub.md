@@ -104,3 +104,110 @@ This is called **broadcast transmission**.
 | **Type of Communication** | Broadcast                                        |
 | **Collision Domain**      | One                                              |
 | **Example**               | 8-port Ethernet hub                              |
+
+
+
+---
+---
+---
+---
+
+
+
+
+# 🖧 Concepts Related to Hubs
+
+**(Multicast, Repeater, Forwarding, Filtering, Collision)**
+
+---
+
+# 1. 📡 Multicast (in simple terms)
+
+### **Multicast** means sending data **from one device to a selected group of devices**, *not to everyone*.
+
+* **Hub does NOT understand multicast.**
+* A hub **treats multicast as broadcast**, meaning it sends it to **all ports**.
+* True multicast handling is done by **switches** and **routers**, not hubs.
+
+---
+
+# 2. 🔁 Repeater Function (Why a Hub Is Also a Repeater)
+
+A **hub acts as a repeater** because:
+
+* It receives an electrical/data signal.
+* It **regenerates (cleans and amplifies)** the signal.
+* Then it **re-sends** the signal to all other ports.
+
+This helps extend the network by boosting weak signals, but:
+
+* Still **no intelligence**,
+* Still **broadcast to everyone**.
+
+---
+
+# 3. 🔀 Forwarding (What It Means in Networking)
+
+**Forwarding** is the operation of **sending frames** from one port to another.
+
+* **Switches** forward frames intelligently (using MAC addresses).
+* **Hubs** do NOT forward intelligently.
+  They simply **repeat** the signal to *every* port.
+
+> In a hub, “forwarding = repeating”.
+
+---
+
+# 4. 🚫 Filtering (What It Means and Why Hubs Can’t Do It)
+
+**Filtering** means **blocking** data from being sent to some ports.
+
+* **Switches** filter frames based on MAC address tables.
+* **Hubs cannot filter anything.**
+
+A hub does **not know**:
+
+* destination address
+* source
+* MAC table
+* traffic type
+
+So it **can’t filter** — it always broadcasts.
+
+---
+
+# 5. 💥 Collision (Important in Hub-Based Networks)
+
+A **collision** occurs when **two devices transmit data at the same time** on the same medium.
+
+Result:
+
+* Signals interfere
+* Data becomes corrupted
+* Frames must be resent (CSMA/CD handles this)
+
+### Why collisions happen in hubs:
+
+* All ports of a hub share the **same collision domain**.
+* Only **one device** can send at a time.
+* If two devices send together → **collision occurs**.
+
+### Effects:
+
+* Network slows down
+* More retransmissions
+* Shared bandwidth becomes inefficient
+
+Switches solved this problem by giving each port a **separate collision domain**.
+
+---
+
+# ✔️ Super Simple Summary
+
+| Concept        | Meaning                             | Hub Behavior                                    |
+| -------------- | ----------------------------------- | ----------------------------------------------- |
+| **Multicast**  | Send to a group                     | Hub sends to **all** (treats as broadcast)      |
+| **Repeater**   | Boosts signal                       | Hub regenerates + sends to all                  |
+| **Forwarding** | Sending frame to destination        | Hub sends to all ports (no intelligence)        |
+| **Filtering**  | Blocking unwanted ports             | Hub cannot filter                               |
+| **Collision**  | Two devices transmit simultaneously | Common in hubs; whole hub is 1 collision domain |
