@@ -4,4 +4,4 @@ https://www.youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_
 
 ---
 
-### Upto video num: 30 is finished
+### Upto video num: 42 is finished
